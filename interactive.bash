@@ -7,7 +7,7 @@ echo "c- reverse"
 echo "d- srtlen"
 echo "e- log"
 echo "f- help"
-echo "g- exit_"
+echo "g- exit"
 echo "write comand to start"
 read com
 case "$com" in
@@ -49,6 +49,7 @@ case "$com" in
 	echo "write exit code"
 	read ex1
 	bash /root/lab1/exit_.bash $ex1
+	return
 	;;
 	*)
 	echo "wrong letter"

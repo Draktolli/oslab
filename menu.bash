@@ -47,7 +47,7 @@ then
 		exit 8
 		fi
 		;;
-		exit_)
+		exit)
 		if [[ -f /root/lab1/exit_.bash ]]
 		then
 		bash /root/lab1/exit_.bash $2
