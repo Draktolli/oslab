@@ -3,72 +3,72 @@ if [[ -n "$1" ]]
 then
 	case $1 in
 		calc)
-		if [[ -f /root/lab1/calc.bash ]]
+		if [[ -f "calc.bash" ]]
 		then
-		bash /root/lab1/calc.bash $2 $3 $4
+		bash ./calc.bash $2 $3 $4
 		else
 		echo -e "no script"
 		exit 8
 		fi
 		;;
 		search)
-		if [[ -f /root/lab1/search.bash ]]
+		if [[ -f "search.bash" ]]
 		then
-		bash /root/lab1/search.bash $2 $3
+		bash ./search.bash $2 $3
 		else
 		echo -e "no script"
 		exit 8
 		fi
 		;;
 		reverse)
-		if [[ -f /root/lab1/reverse.bash ]]
+		if [[ -f "reverse.bash" ]]
 		then
-		bash /root/lab1/reverce.bash $2 $3
+		bash ./reverce.bash $2 $3
 		else
 		echo -e "no script"
 		exit 8
 		fi
 		;;
 		strlen)
-		if [[ -f /root/lab1/strlen.bash ]]
+		if [[ -f "strlen.bash" ]]
 		then
-		bash /root/lab1/strlen.bash $2
+		bash ./strlen.bash $2
 		else
 		echo -e "no script"
 		exit 8
 		fi
 		;;
 		log)
-		if [[ -f /root/lab1/log.bash ]]
+		if [[ -f "log.bash" ]]
 		then
-		bash /root/lab1/log.bash
+		bash ./log.bash
 		else
 		echo -e "no script"
 		exit 8
 		fi
 		;;
 		exit)
-		if [[ -f /root/lab1/exit_.bash ]]
+		if [[ -f "exit_.bash" ]]
 		then
-		bash /root/lab1/exit_.bash $2
+		bash ./exit_.bash $2
 		else
 		echo -e "no script"
 		exit 8
 		fi
 		;;
 		help)
-		if [[ -f /root/lab1/help.bash ]]
+		if [[ -f "help.bash" ]]
 		then
-		bash /root/lab1/help.bash
+		bash ./help.bash
 		else
 		echo -e "no script"
 		exit 8
 		fi
 		;;
 		interactive)
-		if [[ -f /root/lab1/interactive.bash ]]
+		if [[ -f "interactive.bash" ]]
 		then
-		bash /root/lab1/interactive.bash
+		bash ./interactive.bash
 		else
 		echo -e "no script"
 		exit 8

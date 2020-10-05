@@ -18,37 +18,37 @@ case "$com" in
 	read num1
 	echo "write second number"
 	read num2
-	bash /root/lab1/calc.bash $mat $num1 $num2
+	bash ./calc.bash $mat $num1 $num2
 	;;
 	b)
 	echo "write directory"
 	read dir
 	echo "write string you want to search"
 	read str
-	bash /root/lab1/search.bash $dir $str
+	bash ./search.bash $dir $str
 	;;
 	c)
 	echo "write first file"
 	read f1
 	echo "write second file"
 	read f2
-	bash /root/lab1/reverse.bash $f1 $f2
+	bash ./reverse.bash $f1 $f2
 	;;
 	d)
 	echo "write your string"
 	read str
-	bash /root/lab1/strlen.bash $str
+	bash ./strlen.bash $str
 	;;
 	e)
-	bash /root/lab1/log.bash
+	bash ./log.bash
 	;;
 	f)
-	bash /root/lab1/help.bash
+	bash ./help.bash
 	;;
 	g)
 	echo "write exit code"
 	read ex1
-	bash /root/lab1/exit_.bash $ex1
+	bash ./exit_.bash $ex1
 	return
 	;;
 	*)
