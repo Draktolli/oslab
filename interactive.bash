@@ -35,9 +35,16 @@ case "$com" in
 	bash ./reverse.bash $f1 $f2
 	;;
 	d)
+	c='^[0-9]+$'
 	echo "write your string"
 	read str
-	bash ./strlen.bash $str
+	if ! [[ "$ex1" =~ $c ]]
+	then
+		echo -e "not a number"
+	else
+		bash ./strlen.bash $str
+		return
+	fi
 	;;
 	e)
 	bash ./log.bash
@@ -47,9 +54,15 @@ case "$com" in
 	;;
 	g)
 	echo "write exit code"
+	c='^[0-9]+$'
 	read ex1
-	bash ./exit_.bash $ex1
-	return
+	if ! [[ $ex1 =~ $c ]]
+		then
+		echo -e "this is not a number"
+		else
+		bash ./exit_.bash $ex1
+		return
+	fi
 	;;
 	*)
 	echo "wrong letter"

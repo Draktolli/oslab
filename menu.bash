@@ -23,7 +23,7 @@ then
 		reverse)
 		if [[ -f "reverse.bash" ]]
 		then
-		bash ./reverce.bash $2 $3
+		bash ./reverse.bash $2 $3
 		else
 		echo -e "no script"
 		exit 8
