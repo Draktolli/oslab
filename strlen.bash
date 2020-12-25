@@ -1,9 +1,7 @@
 #!/bin/bash
-if [[ -n "$1" ]]
-	then
-		str="$1"
-		echo "${#str}"
-	else
-		echo -e "no or not enough argumenrs"
-		exit 2
+
+if ! [[ $# -eq 1 ]]; then
+echo"Error: "no argument">&2; exit -2
 fi
+string="$@"
+echo "${#string}"
