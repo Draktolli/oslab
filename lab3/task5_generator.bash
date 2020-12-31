@@ -1,19 +1,18 @@
 #!/bin/bash
 
-while true;
-do
+while true; do
 	read LINE
 	echo "$LINE" > task5_pipe
 
 	if [[ "$LINE" == "QUIT" ]];
-	then 
-		echo "Quiting"
-		exit 0
+	   then 
+	       echo "Exit"
+	       exit 0
 	fi
 
-	if [[ "$LINE" != [0-9]* && "$LINE" != "+" && "$LINE" != "*" ]];
-	then
-		echo "Wrong input data"
-		exit 1
+	elif [[ "$LINE" != "+" && "$LINE" =~ [0-9]+ && "$LINE" != "*" ]];
+	   then
+	       echo $LINE "Data troubbles"
+	       exit 1
 	fi
 done
