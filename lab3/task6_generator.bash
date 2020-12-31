@@ -1,21 +1,23 @@
 #!/bin/bash
 
+pittza = $(cat .pid)
+
 while true;
 do
-	read LINE
-	case "$LINE" in
-		"TERM")
-			kill -TERM $(cat .pid)
+    read LINE
+    case "$LINE" in
+	"TERM")
+	 	kill -SIGTERM $pittza
 			exit 0
-		;;
-		"+")
-			kill -USR1 $(cat .pid)
-		;;
-		"*")
-			kill -USR2 $(cat .pid)
-		;;
-		*)
-			:
-		;;
-	esac
+	 ;;
+	 "+")
+		kill -USR1 $pittza
+	 ;;
+	 "*")
+		kill -USR2 $pittza
+	 ;;
+	 *)
+		:
+	 ;;
+    esac
 done
