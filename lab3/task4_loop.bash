@@ -2,5 +2,5 @@
 
 while true;
 do
-	num=2+2
+	num=500*2
 done
