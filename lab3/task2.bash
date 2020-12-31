@@ -4,6 +4,6 @@ echo "2 minutes to party"
 
 sleep 2m
 
-./task1.sh & 
+./task1.bash & 
 
 (tail -f ~/report)
