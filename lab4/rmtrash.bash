@@ -1,25 +1,30 @@
 #!/bin/bash
 
-if [[ (-z "$1") || (-n "$2") ]]
-then
-	echo "Error, invalid arguments"
-	exit 1
+if [[ $# -ne 1 ]]; 
+   then
+       echo "Mistake"
+       exit
 fi
 
-(find "$1" 2> /dev/null > /dev/null) || (echo "Error, no such file found" ; exit 1)
+if [[ !(-f "./$1") ]]; 
+   then
+       echo "Files not found"
+       exit
+fi
 
-input="${1// /_}"
+if [[ !(-d  ~/.trash) ]]; 
+   then
+       mkdir ~/.trash
+fi
 
-#echo $input
+title=0
 
-(find ~/.trash 2> /dev/null > /dev/null) || (mkdir ~/.trash)
+p="$(pwd "$1")/"$1""
 
-trashedFileName=$(tree ~/.trash | tail -1 | awk '{print ($3 + 1)}')
+while [ -f ~/.trash/$name ] ; do
+        let "title=+1"
+done
 
-(ln "$1" ~/.trash/$trashedFileName 2> /dev/null) || (echo "Error, failed to create link" ; exit 1)
-
-(rm "$1" 2> /dev/null) || (echo "Error, failed to remove the file" ; exit 1)
-
-echo "$PWD/$input $trashedFileName" >> ~/.trash.log
-
-exit 0
+ln "$p" ~/.trash/$title
+rm "./$1"
+echo "Filed: "$p"; title: $title" >> ~/.trash.log
