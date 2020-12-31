@@ -1,23 +1,23 @@
 #!/bin/bash
 
 echo $$ > .pid
-number=1
-curr_operation=""
+num=1
+currop=""
 
 EXIT()
 {
-	echo "Exiting"
+	echo "Exit"
 	exit 0
 }
 
 PLUS()
 {
-	curr_operation="+"
+	currop="+"
 }
 
 MULTI()
 {
-	curr_operation="*"
+	currop="*"
 }
 
 trap 'EXIT' SIGTERM
@@ -26,14 +26,14 @@ trap 'MULTI' USR2
 
 while true;
 do
-	case "$curr_operation" in
+	case "$currop" in
 		"+")
-			number=$((number + 2))
+			num=$((number + 2))
 		;;
 		"*")
-			number=$((number * 2))
+			num=$((number * 2))
 		;;
 	esac
-	echo $number
+	echo $num
 	sleep 1
 done
