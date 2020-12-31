@@ -1,6 +1,11 @@
 #!/bin/bash
 
-(mkdir ~/test 2> /dev/null) && (echo $"Catalog test was created successefully" > ~/report.log) && touch ~/test/"$(date +"%d.%m.%y_%H:%M:%S")"
+time_test=$(date +"%d-%m-%Y_%H-%M")
 
+directest=$HOME/test/
 
-(ping -w 1 "www.net_nikogo.ru" 2> /dev/null) || echo $(date +"%d.%m.%y_%H:%M:%S Cant reach the server") >> ~/report.log
+FileReport=~/report
+
+mkdir $directest 2> /dev/null && (echo "Catalog created" >> $FileReport) && (touch $directest$time_test)
+
+(ping -w 1 "www.net_nikogo.ru" 2> /dev/null) || echo "$Web not found" >> $FileReport
