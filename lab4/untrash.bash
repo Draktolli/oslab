@@ -1,57 +1,69 @@
 #!/bin/bash
-
-if [[ -z "$1" ]]
-then
-	echo "Error, invalid arguments"
+if [[ $# -lt 1 ]]; 
+        then
+            echo "Troubbles with parametrs"
+            exit
+        elif [[ $# -gt 1 ]];
+             then 
+                 echo "Troubbles with parametrs"
+                 exit
+             fi
 fi
 
-for i in "$(cat ~/.trash.log | awk -v trashedFileName=$1 '$1 ~ "/*/"trashedFileName {print $0}')";
-do
-	echo $(echo $i | awk '{print $1}')
-	echo "Restore Y/N?"
-	read line
-	if [[ ("$line" != "Y") && ("$line" != "N") ]]
-	then
-		echo "Error, unknown input"
-		exit 1
-	else if [[ "$line" == "Y" ]]
-	then
-		fullName=$(echo "$i" | awk '{print $1}')
-		shortName=$(echo "$i" | awk '{print $2}')
-		path=$(echo "$fullName" | awk -F "/" '{
-							for(i=1;i<NF;i++){
-								printf "%s/",$i
-								}
-						}')
-		find $path 2> /dev/null > /dev/null
-		
-		if [[ $? == "1" ]]
-		then
-			fullName=~/$1
-			echo "Warning, file will be restored to the home durectory"
-		fi
+num=$(grep -c "$1;" ~/.trash.log)
 
-		while true;
-		do
-			find $fullName 2> /dev/null > /dev/null
-			if [[ $?? == "0" ]]
-			then
-				echo "Warning^ name collision. Please choose a new name: "
-				read newName
-				fullName=="$(echo "$fullName" | awk -F "/" '{
-							for(i=1;i<NF;i++){
-								printf "%s/",$i
-								}
-						}')$newName"
-			else
-				break;
-			fi
-		done
-		sed -i "/ $shortName/d" ~/.trash.log
-		mv ~/.trash/$shortName $fullName
-		break;
-	fi
-fi
+if [[ $num -eq 0 ]];
+        then
+            echo "File not found"
+            exit
+else
+num | while read -r line; do
+        title="$1"
+        p=$(grep -o "/.*"$name";" <<< "$line"| sed 's/;//')
+        link=$(grep -o "[0-9]*$" <<< "$line")
+        echo -n "Recover '$p'? (enter y/n):"
+        read answer </dev/tty
+        case "$answer" in 
+                "n")
+                    echo "Way for olds"; 
+                "y")
+                    d=$(sed "s/\/"$title"/\//" <<< "$p")
+                	if [[ !(-d "$d") ]]; 
+                        	then
+                            	p="$HOME/"$title""
+                            	echo -e "Directory "$d" not exit\nWay_of_love: "$HOME/""
+                fi
+                if [[ -f "$p" ]]; then
+                        while true; do
+                        echo -ne "Such file already exists\nChange file name? (enter y/n):"
+                        read answ </dev/tty
+                        case "$answ" in
+                        "n")
+                                echo "File not changed";
+                        "y")
+                                echo -n "Enter new name: "
+                                read newName </dev/tty
+                                newPath=$(sed "s/\/"$name"/\/"$newName"/" <<< "$p")
+                                if [[ !(-f "$newPath") ]]; then
+                                                name="$newName"
+                                                path="$newPath"
+                                                break
+                                fi
+                        ;;
+                        *)
+                        exit
+                        ;;
+                        esac
+                        done
+                fi
+                ln ~/.trash/"$link" "$p"
+                rm ~/.trash/"$l"
+                sed -i "/"$l"$/d" ~/.trash.log
+                exit
+        ;;
+        *)
+                :
+        ;;
+        esac
 done
-
-exit 0
+fi
