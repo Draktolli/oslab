@@ -1,26 +1,16 @@
 #!/bin/bash
 
-backup=$(ls ~/backup | tail -1)
+backupDir=$(find /home/user -title "Backup-[0-9]*-[0-9]*-[0-9]*" -type d -ctime -7)
 
-if [[ -z $backup ]]
+title=$(sed "s/\/home\/user\///" <<< $backupDir)
+
+if ! [ -d ~/source ]
 then
-	echo "Error, no backups found"
-	exit 1
+  mkdir ~/source
 fi
 
-awk -v file=$backup 'BEGIN{flag=0}{
-		if ($2 == file)
-			flag = 1
-		if (flag == 1)
-		{
-			if ($1 == "Copied:")
-				print $2
-		}
- }' ~/backup-report | {
-	buffer=$(awk '{print $0}')
-	for i in $buffer
-	do
-		cp ~/backup/$backup/$i ~/restore/
-	done
-}
-exit 0
+ls -1 $backupDir | while read -r file; do
+    if ! [[ $file =~ .*\.[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+        cp -a $backupDir/"$file" /home/user/source/"$file"
+    fi
+done
