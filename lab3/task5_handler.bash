@@ -1,32 +1,32 @@
 #!/bin/bash
 
-curr_operation="+"
-variable=1
+currop="+"
+varb=1
 
 (tail -f task5_pipe) |
 while true;
 do
 	read LINE
 
-	#echo $LINE
+	echo $LINE
 
 	case "$LINE" in
 		"+")
-			curr_operation="$LINE"
+			currop="$LINE"
 			echo "Plus"
 		;;
 		"*")
-			curr_operation="*"
+			currop="*"
 			echo "Multi"
 		;;
 		[0-9]*)
 			case $curr_operation in
 				"+")
-					result=$(($variable + $LINE))
+					result=$(($varb + $LINE))
 					echo "$result"
 				;;
 				"*")
-					result=$(($variable * $LINE))
+					result=$(($varb * $LINE))
 					echo "$result"
 				;;
 			esac
@@ -36,6 +36,7 @@ do
 			exit 0
 		;;
 		*)
+                        echo "Unlucky option"
 			killall tail
 			exit 1
 		;;
