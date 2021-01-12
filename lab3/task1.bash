@@ -8,4 +8,4 @@ FileReport=~/report
 
 mkdir $directest 2> /dev/null && (echo "Catalog created" >> $FileReport) && (touch $directest$time_test)
 
-(ping -w 1 "www.net_nikogo.ru" 2> /dev/null) || echo "$Web not found" >> $FileReport
+(ping "www.net_nikogo.ru" 2> /dev/null) || echo "$Web not found" >> $FileReport
